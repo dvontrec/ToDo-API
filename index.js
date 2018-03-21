@@ -4,12 +4,15 @@ var express		= require("express"),
 	mongoose 	= require("mongoose");
 	app			= express();
 
+//setup Routes
+var toDoRoutes = require("./routes/todos");
+
 //index route
 app.get("/", function(req, res){
 	res.json({
 		name:"test",
 		title:"case"
-	});
+	}); 
 });
 
 //Adds listener to the app
