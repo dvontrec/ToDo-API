@@ -27,7 +27,16 @@ router.get("/", function(req, res)
 
 //Create todo route
 router.post("/", function(req, res){
-	
+	//creates a new to do from the body
+	db.Todo.create(req.body)
+	//if sucessful
+	.then(function(newToDo){
+		//send the new to do back with the created status
+		res.status(201).json(newToDo);
+	})
+	.catch(function(err){
+		res.send(err);
+	})
 });
 
 module.exports = router;
