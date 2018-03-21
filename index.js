@@ -10,6 +10,15 @@ var express		= require("express"),
 //tells application what packages to use
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}))
+//allows app to use directories
+app.use(express.static(__dirname + "/public")); //starts fro root directory
+app.use(express.static(__dirname + "/views"));
+
+app.get("/", function(req, res){
+	res.sendFile("index.html");
+});
+
+
 //use routes with specific path
 app.use("/api/todos", toDoRoutes);
 
