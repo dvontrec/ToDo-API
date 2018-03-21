@@ -1,19 +1,17 @@
 //sets up app variables
 var express		= require("express"),
 	port 		= process.env.PORT || 3000,
-	mongoose 	= require("mongoose");
+	mongoose 	= require("mongoose"),
+	toDoRoutes 	= require("./routes/todos"),
+	bodyParser 	= require("body-parser"),
 	app			= express();
 
-//setup Routes
-var toDoRoutes = require("./routes/todos");
 
-//index route
-app.get("/", function(req, res){
-	res.json({
-		name:"test",
-		title:"case"
-	}); 
-});
+//tells application what packages to use
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}))
+//use routes with specific path
+app.use("/api/todos", toDoRoutes);
 
 //Adds listener to the app
 app.listen(port, function()
